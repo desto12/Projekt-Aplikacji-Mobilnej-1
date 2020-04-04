@@ -7,6 +7,7 @@ System rezerwacji kortów
 * [Podstawowe Funkcje](#podstawowe-funkcje)
 * [Dodatkowe Funkcje](#dodatkowe-funkcje)
 * [Technologie](#technologie)
+* [Raport1](#raport-1)
 
 
 ## General Info
@@ -29,3 +30,17 @@ System rezerwacji kortów
 * Firebase
 * Android Studio
 	
+## Raport 1
+* Zrobiłem podstawowe layouty poszczególnych ekranów
+* Ekran logowania, poczatkowo chcialbym aby jedyną opcją logowania była opcja z mailem
+* głowny ekran widoczny po zalogowaniu, z lewej strony wysuwane menu widoczne na nastepnym screenie
+* karta rezerwacji czyli główna fukncjonalość będzie w postaci zwykłego kalendarza, po kliknięciu w dany dzień będziemy mieli kolejny ekran wyboru numeru kortu, a nastepnie kartę z rozpiską godzina po godzinie.
+![](login_screen.png)
+![](main_screen.png)
+![](main_2_screen.png)
+![](reservation_screen.png)
+
+
+
+
+
