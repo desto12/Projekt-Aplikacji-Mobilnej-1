@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rezerwacjakortow/screens/home.dart';
 import 'package:rezerwacjakortow/screens/reservations/reservations.dart';
+import 'package:rezerwacjakortow/screens/sigin.dart';
 
 void main() => runApp(MyApp());
 
@@ -11,7 +12,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: appTitle,
-      home: Reservation(title: appTitle),
+      home: Home(title: appTitle)
     );
   }
 }
