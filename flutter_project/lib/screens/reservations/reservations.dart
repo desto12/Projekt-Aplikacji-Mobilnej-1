@@ -4,7 +4,7 @@ import 'package:table_calendar/table_calendar.dart';
 
 class Reservation extends StatefulWidget {
   Reservation({Key key, this.title}) :super(key: key);
-  final title;
+  final String title;
   @override
   _ReservationState createState() => _ReservationState();
 }
@@ -18,7 +18,6 @@ class _ReservationState extends State<Reservation> {
     super.initState();
     _calendarController = CalendarController();
   }
-
   @override
   void dispose() {
     _calendarController.dispose();
@@ -27,7 +26,7 @@ class _ReservationState extends State<Reservation> {
   void _onDaySelected(DateTime day, List events) {
     print('CALLBACK: _onDaySelected');
     print(day);
-    Navigator.pushNamed(context, '/reservation_card');
+    Navigator.pushNamed(context, '/reservation_card',arguments: day);
   }
   @override
   Widget build(BuildContext context) {

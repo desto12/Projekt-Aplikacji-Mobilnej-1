@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
 class ReservationCard extends StatefulWidget{
+  final DateTime data;
+  ReservationCard({Key key, this.data}) : super(key: key);
+
   @override
   ReservationCardState createState() => ReservationCardState();
 
@@ -18,6 +21,7 @@ class ReservationCardState extends State<ReservationCard> {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
+    print(widget.data);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.pinkAccent,
