@@ -8,7 +8,7 @@ System rezerwacji kortów
 * [Dodatkowe Funkcje](#dodatkowe-funkcje)
 * [Technologie](#technologie)
 * [Raport1](#raport-1)
-
+* [Raport2](#raport-2)
 
 ## General Info
 * Projekt zakłada stworzenie aplikacji na system Android umożliwiającej rezerwacje kortu tenisowego.
@@ -39,6 +39,12 @@ System rezerwacji kortów
 ![](main_screen.png)
 ![](main_2_screen.png)
 ![](reservation_screen.png)
+
+## Raport 2
+* Dodane ścieżki do poszczególnych ekranów dzięki czemu mozna już się płynnie poruszać po aplikacji
+* dodanie integracji z Firebasem
+* dodany prosty system rejstracji za pomocą emaila(bez potwierdzenia)
+* dodany system logowania
 
 
 

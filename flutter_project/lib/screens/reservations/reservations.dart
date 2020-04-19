@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rezerwacjakortow/screens/reservations/reservation_card.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 
@@ -26,7 +27,11 @@ class _ReservationState extends State<Reservation> {
   void _onDaySelected(DateTime day, List events) {
     print('CALLBACK: _onDaySelected');
     print(day);
-    Navigator.pushNamed(context, '/reservation_card',arguments: day);
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+        builder: (context) => ReservationCard(data: day),
+    ),);
   }
   @override
   Widget build(BuildContext context) {
