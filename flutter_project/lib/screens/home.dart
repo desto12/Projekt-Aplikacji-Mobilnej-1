@@ -8,7 +8,8 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(title)),
+      appBar: AppBar(title: Text(title),
+      backgroundColor: Colors.pinkAccent,),
       body: Center(child: Text('W tym miejscu mają znajdować się "newsy"')),
       drawer: Drawer(
         child: ListView(
@@ -26,13 +27,13 @@ class Home extends StatelessWidget {
                 // Update the state of the app
                 // ...
                 // Then close the drawer
-                Navigator.pop(context);
+                Navigator.pushNamed(context, '/reservations');
               },
             ),
             ListTile(
               title: Text('Ustawienia'),
               onTap: () {
-                Navigator.pop(context);
+                Navigator.pushNamed(context, '/reservations');
               },
             ),
           ],

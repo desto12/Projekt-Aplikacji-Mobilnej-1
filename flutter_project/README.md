@@ -1,6 +1,6 @@
 # rezerwacjakortow
 
-Aplikacja do rezerwacji kortów
+A new Flutter application.
 
 ## Getting Started
 
