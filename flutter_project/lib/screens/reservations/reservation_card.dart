@@ -32,4 +32,5 @@ class ReservationCardState extends State<ReservationCard> {
       ),
       body: Text("OTO REZERWACJE KORTU NA DZIEN: $dateString",style: TextStyle(fontSize: 32.0),),
     );
-  }}
+  }
+}

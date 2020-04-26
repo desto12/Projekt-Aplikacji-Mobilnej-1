@@ -55,7 +55,7 @@ class Home extends StatelessWidget {
             // Update the state of the app
             // ...
             // Then close the drawer
-            Navigator.pushNamed(context, '/reservations');
+            Navigator.pushNamed(context, '/court_card');
           },
         ),
         ListTile(
