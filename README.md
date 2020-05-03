@@ -9,6 +9,7 @@ System rezerwacji kortów
 * [Technologie](#technologie)
 * [Raport1](#raport-1)
 * [Raport2](#raport-2)
+* [Raport3](#raport-3)
 
 ## General Info
 * Projekt zakłada stworzenie aplikacji na system Android umożliwiającej rezerwacje kortu tenisowego.
@@ -46,6 +47,14 @@ System rezerwacji kortów
 * dodany prosty system rejstracji za pomocą emaila(bez potwierdzenia)
 * dodany system logowania
 
+
+## Raport 3
+* integracja z bazą danych NoSQL - Firestore
+* dodanie możliwości wyboru kortu(Korty są wczytywane z bazy danych)
+* dla każdego kortu jest kalendarz z wyborem dnia, po wybraniu danego dnia aplikacja pokazuje nam rezerwacja dla danego dnia
+* Aktualnie chciałbym dopracować kartę rezerwacji dla danego dnia, a także umozliwić użtykowanikowi dodanie własnej rzerwacji z poziomu aplikacji
+![](court_screen.png)
+![](day_screen.png)
 
 
 
