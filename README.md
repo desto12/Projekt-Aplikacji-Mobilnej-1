@@ -51,8 +51,8 @@ System rezerwacji kortów
 ## Raport 3
 * integracja z bazą danych NoSQL - Firestore
 * dodanie możliwości wyboru kortu(Korty są wczytywane z bazy danych)
-* dla każdego kortu jest kalendarz z wyborem dnia, po wybraniu danego dnia aplikacja pokazuje nam rezerwacja dla danego dnia
-* Aktualnie chciałbym dopracować kartę rezerwacji dla danego dnia, a także umozliwić użtykowanikowi dodanie własnej rzerwacji z poziomu aplikacji
+* dla każdego kortu jest kalendarz z wyborem dnia, po wybraniu danego dnia aplikacja pokazuje nam rezerwacje dla danego dnia
+* Aktualnie chciałbym dopracować kartę rezerwacji dla danego dnia, a także umozliwić użytkownikowi dodanie własnej rzerwacji z poziomu aplikacji
 ![](court_screen.png)
 ![](day_screen.png)
 
