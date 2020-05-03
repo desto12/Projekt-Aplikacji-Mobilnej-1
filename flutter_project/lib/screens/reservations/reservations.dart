@@ -4,8 +4,9 @@ import 'package:table_calendar/table_calendar.dart';
 
 
 class Reservation extends StatefulWidget {
-  Reservation({Key key, this.title}) :super(key: key);
+  Reservation({Key key, this.title,this.courtId}) :super(key: key);
   final String title;
+  final int courtId;
   @override
   _ReservationState createState() => _ReservationState();
 }
@@ -26,15 +27,15 @@ class _ReservationState extends State<Reservation> {
   }
   void _onDaySelected(DateTime day, List events) {
     print('CALLBACK: _onDaySelected');
-    print(day);
     Navigator.push(
         context,
         MaterialPageRoute(
-        builder: (context) => ReservationCard(data: day),
+        builder: (context) => ReservationCard(data: day,courtId: widget.courtId,),
     ),);
   }
   @override
   Widget build(BuildContext context) {
+    print(widget.courtId);
     return Scaffold(
       appBar: AppBar(
         title: Text("Kalendarz Rezerwacji"),

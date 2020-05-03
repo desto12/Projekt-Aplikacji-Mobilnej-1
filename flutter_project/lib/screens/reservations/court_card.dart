@@ -1,22 +1,39 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
+import 'package:flutter/widgets.dart';
+import 'package:rezerwacjakortow/screens/reservations/reservations.dart';
 import 'package:rezerwacjakortow/services/database.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 
-class CourtCard extends StatefulWidget{
+class CourtCard extends StatefulWidget {
   @override
   CourtCardState createState() => CourtCardState();
 
 
 }
-class CourtCardState extends State<CourtCard> {
+class CourtCardState extends State<CourtCard> with TickerProviderStateMixin {
+AnimationController _controll;
+Animation<double> animation;
+Tween<double> tween;
 
+bool isPlaying = false;
   @override
-  void initState()
+  void initState ()
   {
     super.initState();
+    _controll = AnimationController(vsync: this, duration: Duration(milliseconds: 2000));
+    tween = Tween(begin: 1.0, end: 0.0);
+     animation = tween.animate(_controll);
+     _controll.forward();
   }
+  @override
+void dispose() {
+    _controll.dispose();
+  super.dispose();
+}
+
+
+
+
 
 
 Widget build(BuildContext context) {
@@ -28,49 +45,29 @@ Widget build(BuildContext context) {
       elevation: 0,
     ),
       body:StreamBuilder(
-        stream: Firestore.instance.collection('Korty').snapshots(),
-    builder: (context,snapshot){
-          if(!snapshot.hasData)
-              return Text('ładowanie danych....');
-          return Column(
-            children: <Widget>[
-              RaisedButton(
-                child: Text(snapshot.data.documents[0]['court_name']),
-                onPressed:(){Navigator.pushNamed(context, "/reservations");
-                },
-                shape: RoundedRectangleBorder(
-                    borderRadius: new BorderRadius.circular(30.0)
-                ),
-                color:Color(0xfff50057),
+        stream: DatabaseService().getPost('Korty'),
+    builder: (context,snapshot) {
+      if (!snapshot.hasData)
+        return Text('ładowanie danych....');
+      return ListView.builder(
+          itemCount: snapshot.data.length,
+          itemBuilder: (context, index) {
+            return ListTile(
+              trailing:AnimatedIcon(
+                  icon: AnimatedIcons.add_event,
+                  progress: animation,
               ),
-              RaisedButton(
-                child: Text(snapshot.data.documents[1]['court_name']),
-                onPressed:(){Navigator.pushNamed(context, "/reservations");
-                },
-                shape: RoundedRectangleBorder(
-                    borderRadius: new BorderRadius.circular(30.0)
+              title: Text(snapshot.data[index].data['court_name']),
+              onTap: () {
+                Navigator.push(context,MaterialPageRoute(
+                  builder: (context) => Reservation(courtId: snapshot.data[index].data['court_id'])
                 ),
-                color:Color(0xfff50057),
-              ),
-            ],
-
-          );
-    }
-      ),
+                );
+              },
+            );
+          });
+    }),
     );
   }
-  /*  Widget build(BuildContext context) {
-    return new StreamBuilder<QuerySnapshot>(
-        stream: Firestore.instance.collection("expenses").snapshots,
-        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-          if (!snapshot.hasData) return new Text("There is no expense");
-          return new ListView(children: getExpenseItems(snapshot));
-        });
-  }
 
-  getExpenseItems(AsyncSnapshot<QuerySnapshot> snapshot) {
-    return snapshot.data.documents
-        .map((doc) => new ListTile(title: new Text(doc["name"]), subtitle: new Text(doc["amount"].toString())))
-        .toList();
-  }*/
 }
