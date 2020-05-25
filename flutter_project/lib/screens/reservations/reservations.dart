@@ -30,6 +30,7 @@ class _ReservationState extends State<Reservation> {
     Navigator.push(
         context,
         MaterialPageRoute(
+            settings: RouteSettings(name: "/reservation_card"),
         builder: (context) => ReservationCard(data: day,courtId: widget.courtId,),
     ),);
   }

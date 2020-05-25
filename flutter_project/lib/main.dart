@@ -6,7 +6,7 @@ import 'package:rezerwacjakortow/screens/reservations/reservations.dart';
 import 'package:rezerwacjakortow/screens/root_page.dart';
 import 'package:rezerwacjakortow/screens/auth.dart';
 import 'package:rezerwacjakortow/screens/auth_provider.dart';
-import 'package:rezerwacjakortow/screens/reservations/court_card.dart';
+import 'package:rezerwacjakortow/screens/reservations/reservation_form.dart';
 
 void main() => runApp(MyApp());
 
@@ -26,6 +26,7 @@ class MyApp extends StatelessWidget {
         '/reservations':(context) => Reservation(),
         '/reservation_card':(context) => ReservationCard(),
         '/court_card':(context) => CourtCard(),
+        '/reservation_form':(context) => ReservationForm(),
       },
     ),
     );
