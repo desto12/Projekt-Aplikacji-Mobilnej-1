@@ -1,7 +1,6 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:rezerwacjakortow/screens/auth.dart';
 import 'package:rezerwacjakortow/services/database.dart';
 class ReservationForm extends StatefulWidget{
@@ -19,7 +18,6 @@ class ReservationFormState extends State<ReservationForm> {
   String _name = '';
   DateTime startDate;
   DateTime endDate;
-  double _duration;
   double _hvalue = 1;
   double _mvalue = 0;
   final user = Auth().userName();

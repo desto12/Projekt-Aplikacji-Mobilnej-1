@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:rezerwacjakortow/services/database.dart';
 import 'package:rezerwacjakortow/screens/reservations/reservation_form.dart';
 import 'package:rezerwacjakortow/screens/auth.dart';

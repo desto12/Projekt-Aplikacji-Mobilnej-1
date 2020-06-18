@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:rezerwacjakortow/screens/auth.dart';
 import 'package:rezerwacjakortow/screens/auth_provider.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
@@ -27,6 +28,7 @@ enum FormType {
   login,
   register,
 }
+enum authProblems { UserNotFound, PasswordNotValid, NetworkError }
 
 class _LoginPageState extends State<LoginPage> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
@@ -47,17 +49,48 @@ class _LoginPageState extends State<LoginPage> {
   Future<void> validateAndSubmit() async {
     if (validateAndSave()) {
       try {
-        final BaseAuth auth = AuthProvider.of(context).auth;
+        final BaseAuth auth = AuthProvider
+            .of(context)
+            .auth;
         if (_formType == FormType.login) {
-          final String userId = await auth.signInWithEmailAndPassword(_email, _password);
+          final String userId = await auth.signInWithEmailAndPassword(
+              _email, _password);
+          toastMessage("Zalogowano Pomyślnie");
           print('Signed in: $userId');
         } else {
-          final String userId = await auth.createUserWithEmailAndPassword(_email, _password);
+          final String userId = await auth.createUserWithEmailAndPassword(
+              _email, _password);
+          toastMessage("Zarejestrowano Pomyślnie");
           print('Registered user: $userId');
         }
         widget.onSignedIn();
       } catch (e) {
-        print('Error: $e');
+        authProblems errorType;
+        switch (e.message) {
+          case 'There is no user record corresponding to this identifier. The user may have been deleted.':
+            errorType = authProblems.UserNotFound;
+            toastMessage("Podany email jest nieprawdiłowy");
+            break;
+          case 'The password is invalid or the user does not have a password.':
+            errorType = authProblems.PasswordNotValid;
+            toastMessage("Podane hasło jest nieprawidłowe");
+            break;
+          case 'A network error (such as timeout, interrupted connection or unreachable host) has occurred.':
+            toastMessage("Wystąpił problem z połączeniem");
+            errorType = authProblems.NetworkError;
+            break;
+          case 'The email address is badly formatted.':
+            toastMessage("Podany email jest nieprawdiłowy");
+            break;
+          case 'The given password is invalid. [ Password should be at least 6 characters ]':
+            toastMessage("Hasło musi zawierać przynajmniej 6 znaków!");
+            break;
+          case 'The email address is already in use by another account.':
+            toastMessage("Ten email jest już zajęty!");
+            break;
+          default:
+            print('Case ${e.message} is not yet implemented');
+        }
       }
     }
   }
@@ -79,6 +112,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset:false,
       appBar: AppBar(
         backgroundColor: Colors.pinkAccent,
         title: Text('Rezerwacja kortów'),
@@ -91,13 +125,11 @@ class _LoginPageState extends State<LoginPage> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children:<Widget>[
               SizedBox(
-                height: 220,
+                height: 210,
                 child: Image.asset( //logo
                     "assets/images/logo.png",
-                    fit: BoxFit.contain),
-              ),
-              SizedBox(
-                height: 10.0,
+                    fit: BoxFit.contain
+                ),
               ),
             ]+buildInputs()+buildSubmitButtons(),
           ),
@@ -136,7 +168,7 @@ class _LoginPageState extends State<LoginPage> {
 
   List<Widget> buildSubmitButtons() {
     final fb_button = Material(
-      child:SignInButton(
+        child:SignInButton(
         Buttons.Facebook,
         text: "Konto Facebook",
         shape: RoundedRectangleBorder(
@@ -153,19 +185,20 @@ class _LoginPageState extends State<LoginPage> {
       ),
       onPressed: () {},
     );
-    final loginButton = Material(
+    final loginButton = Container(
+      margin: EdgeInsets.all(10),
+      child:Material(
         elevation: 5.0,
         borderRadius: BorderRadius.circular(30.0),
         color:Color(0xfff50057),
         child: MaterialButton(
           minWidth: MediaQuery.of(context).size.width,
-          padding: EdgeInsets.fromLTRB(15.0, 20.0, 20.0, 15.0),
+          padding: EdgeInsets.all(10),
           onPressed: validateAndSubmit,
           child: Text("Login", textAlign: TextAlign.center),
         )
-    );
-    final registerButton = Material(
-      child:SignInButtonBuilder(
+    ),);
+    final registerButton = SignInButtonBuilder(
         text: 'Załóż konto',
         icon: Icons.email,
         onPressed: moveToRegister,
@@ -173,8 +206,7 @@ class _LoginPageState extends State<LoginPage> {
         shape: RoundedRectangleBorder(
             borderRadius: new BorderRadius.circular(30.0)
         ),
-      ),
-    );
+      );
     if (_formType == FormType.login) {
       return <Widget>[
         loginButton,
@@ -200,5 +232,16 @@ class _LoginPageState extends State<LoginPage> {
         ),
       ];
     }
+  }
+  void toastMessage(String message){
+    Fluttertoast.showToast(
+        msg: message,
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.pink,
+        textColor: Colors.white,
+        fontSize: 16.0
+    );
   }
 }

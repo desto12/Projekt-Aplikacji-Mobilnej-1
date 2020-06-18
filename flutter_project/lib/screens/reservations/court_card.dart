@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:rezerwacjakortow/screens/reservations/court_detail.dart';
 import 'package:rezerwacjakortow/screens/reservations/reservations.dart';
 import 'package:rezerwacjakortow/services/database.dart';
 
@@ -57,6 +58,13 @@ Widget build(BuildContext context) {
                   icon: AnimatedIcons.add_event,
                   progress: animation,
               ),
+              onLongPress: (){
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => CourtDetail(courtId: snapshot.data[index].documentID),
+                  ),);
+              },
               title: Text(snapshot.data[index].data['court_name']),
               onTap: () {
                 Navigator.push(context,MaterialPageRoute(

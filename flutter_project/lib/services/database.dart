@@ -1,5 +1,5 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 
 class DatabaseService {
@@ -7,7 +7,6 @@ class DatabaseService {
       'Korty');
   final CollectionReference reservCollection = Firestore.instance.collection(
       'reservations');
-
 
   Stream getPost(String collection) async* {
     //get database instance
@@ -55,5 +54,12 @@ checkIsFree2(int courtId, DateTime endDate, DateTime startDate) async{
     reservCollection.document(id).delete();
 
     }
+
+
+  Stream getCourt(String id) async* {
+    DocumentSnapshot data = await Firestore.instance.collection('Korty').document(id).get();
+
+    yield data;
+  }
 
   }

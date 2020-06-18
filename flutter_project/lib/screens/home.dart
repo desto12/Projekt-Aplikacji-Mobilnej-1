@@ -24,7 +24,6 @@ class Home extends StatelessWidget {
   }
   @override
   Widget build(BuildContext context) {
-    final String = _currentUser(context);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.pinkAccent,
